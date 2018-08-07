@@ -14,31 +14,26 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.contact.InitializeNewContactCreation();
+         //   app.Navigator.GoToHomePage();
+         //   app.Auth.Login(new AccountData("admin", "secret"));
+
+           
             PersonData person = new PersonData("Leonard");
             person.Lastname = "Willis";
-            app.contact.FillInTheFields(person);
-            app.contact.SubmitContactCreation();
-            app.Navigator.ReturnToHomePage();
+            app.contact.CreateContact(person);
             app.Auth.LogOut();
         }
 
-      
-     
+        [Test]
+        public void EmptyContactCreationTest()
+        {
+            //   app.Navigator.GoToHomePage();
+            //   app.Auth.Login(new AccountData("admin", "secret"));
 
-        
-
-    
-
-     
-
-       
-
-    
-
-             
-
+            PersonData person = new PersonData("");
+            person.Lastname = "";
+            app.contact.CreateContact(person);
+            app.Auth.LogOut();
+        }
     }
 }

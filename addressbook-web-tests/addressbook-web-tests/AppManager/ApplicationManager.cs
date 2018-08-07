@@ -19,13 +19,32 @@ namespace WebAddressbookTests
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+     
 
         public ApplicationManager()
         {
-            logIn_LogOut_Helper = new LogIn_LogOut_Helper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+            FirefoxOptions options = new FirefoxOptions();
+            options.BrowserExecutableLocation = @"c:\Program Files\Mozilla Firefox\firefox.exe";
+            options.UseLegacyImplementation = true;
+            driver = new FirefoxDriver(options);
+            baseURL = "http://localhost";
+
+            logIn_LogOut_Helper = new LogIn_LogOut_Helper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
+        }
+
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+            set
+            {
+                this.Driver = value;
+            }
         }
 
         public void Stop()
@@ -71,6 +90,5 @@ namespace WebAddressbookTests
                 return contactHelper; 
             }
         }
-
     }
 }
