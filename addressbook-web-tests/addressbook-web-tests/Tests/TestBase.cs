@@ -13,6 +13,7 @@ namespace WebAddressbookTests
         protected ApplicationManager app;
 
         [SetUp]
+
         public void SetupTest()
         {
             app = new ApplicationManager();
