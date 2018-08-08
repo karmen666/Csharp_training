@@ -62,6 +62,7 @@
     <Compile Include="AppManager\ApplicationManager.cs" />
     <Compile Include="AppManager\ContactHelper.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
+    <Compile Include="Tests\ContactModifTests.cs" />
     <Compile Include="Tests\GroupModificationTests.cs" />
     <Compile Include="Tests\GroupRemovalTests.cs" />
     <Compile Include="Model\GroupData.cs" />
@@ -75,7 +76,9 @@
     <Compile Include="Tests\ContactCreationTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram2.cd" />
+    <None Include="..\..\..\..\..\Desktop\ClassDiagram2.cd">
+      <Link>ClassDiagram2.cd</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -22,11 +22,27 @@ namespace WebAddressbookTests
            InitializeNewContactCreation();
            FillInTheFields(person);
            SubmitContactCreation();
-           manager.Navigator.ReturnToHomePage();
-         
-
-           return this;
+             
+            return this;
         }
+
+        public ContactHelper ContactModify(int v, PersonData newPerson)
+        {
+           // manager.Navigator.GoToHomePage();
+            SelectContact(v);
+            InitContactModification();
+            FillInTheFields(newPerson);
+            SubmitContactModification();
+            manager.Navigator.ReturnToHomePage();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int v)
+        {
+            driver.FindElement(By.Id("3")).Click();
+            return this;
+        }
+
         public ContactHelper InitializeNewContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
@@ -45,6 +61,18 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification()
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
             return this;
         }
 
