@@ -10,18 +10,15 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class ContactModifTests:TestBase
+    public class Contact_Removal_Tests:TestBase
     {
         [Test]
 
-        public void ContactModifTest()
+        public void ContactRemovalTest()
         {
-            PersonData newPerson = new PersonData("British");
-            newPerson.Lastname = "Government";
-
-            app.contact.ContactModify(1,newPerson);
+            app.contact.ContactDeletion(1);
+            app.Navigator.ReturnToHomePage();
             app.Auth.LogOut();
         }
-
     }
 }

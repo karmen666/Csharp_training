@@ -64,7 +64,6 @@ namespace WebAddressbookTests
             return this;
         }
 
-
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
@@ -82,7 +81,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("(//input[@name='delete'])[" + number + "]")).Click();
             return this;
         }
-
      
         public GroupHelper ReturnToGroupsPage()
         {

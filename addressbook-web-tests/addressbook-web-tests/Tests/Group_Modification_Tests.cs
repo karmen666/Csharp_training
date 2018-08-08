@@ -15,9 +15,9 @@ namespace WebAddressbookTests
         
         public void GroupModificationTest()
         {
-            GroupData newData = new GroupData("Panda");
-            newData.Header = "bear";
-            newData.Footer = "kind";
+            GroupData newData = new GroupData("Coconut");
+            newData.Header = "White";
+            newData.Footer = "Tough";
             app.Groups.Modify(1, newData);
             app.Auth.LogOut();
         }

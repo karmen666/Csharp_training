@@ -12,10 +12,11 @@ namespace WebAddressbookTests
     public class LogIn_LogOut_Helper:HelperBase
     {
        
-        public LogIn_LogOut_Helper(ApplicationManager manager): 
-            base(manager)
+        public LogIn_LogOut_Helper(ApplicationManager manager): base(manager)
         {
-        } 
+
+        }
+
         public void Login(AccountData account)
         {
             driver.FindElement(By.Name("user")).Clear();
@@ -24,6 +25,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
+
         public void LogOut()
         {
             driver.FindElement(By.LinkText("Logout")).Click();

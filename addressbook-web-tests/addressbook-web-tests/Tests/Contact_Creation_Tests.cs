@@ -14,10 +14,10 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            PersonData person = new PersonData("Kate");
-            person.Lastname = "Sorokina";
+            PersonData person = new PersonData("Cat");
+            person.Lastname = "Woman";
             app.contact.CreateContact(person);
-           // manager.Navigator.ReturnToHomePage();
+            app.Navigator.ReturnToHomePage();
             app.Auth.LogOut();
         }
 
@@ -27,7 +27,7 @@ namespace WebAddressbookTests
            PersonData person = new PersonData("");
             person.Lastname = "";
             app.contact.CreateContact(person);
-            //manager.Navigator.ReturnToHomePage();
+            app.Navigator.ReturnToHomePage();
             app.Auth.LogOut();
         }
     }

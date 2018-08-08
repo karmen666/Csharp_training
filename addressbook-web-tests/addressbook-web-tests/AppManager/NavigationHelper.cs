@@ -12,12 +12,13 @@ namespace WebAddressbookTests
 {
    public class NavigationHelper:HelperBase 
     {
-            private string baseURL;
+        private string baseURL;
 
         public NavigationHelper(ApplicationManager manager,string baseURL):base(manager)
         {
             this.baseURL = baseURL;
         }
+
         public void GoToHomePage()
         {
             driver.Navigate().GoToUrl(baseURL + "/addressbook/");
@@ -27,10 +28,10 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.LinkText("home")).Click();
         }
+
         public void GoToGroupsPage()
         {
             driver.FindElement(By.LinkText("groups")).Click();
         }
     }
-
 }
