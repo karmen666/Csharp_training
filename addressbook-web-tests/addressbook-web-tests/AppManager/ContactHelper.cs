@@ -43,7 +43,6 @@ namespace WebAddressbookTests
         public ContactHelper ContactModify(int v, PersonData newPerson)
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(v);
             InitContactModification();
             FillInTheFields(newPerson);
             SubmitContactModification();
@@ -55,7 +54,8 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + v + "]")).Click();
             return this;
-        }
+        } 
+
 
         public ContactHelper InitializeNewContactCreation()
         {

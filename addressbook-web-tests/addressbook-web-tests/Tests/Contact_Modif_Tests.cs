@@ -16,9 +16,8 @@ namespace WebAddressbookTests
 
         public void ContactModifTest()
         {
-            PersonData newPerson = new PersonData("UK");
-            newPerson.Lastname = "Ambassador";
-
+            PersonData newPerson = new PersonData("TU");
+            newPerson.Lastname = "Tu-ti-tu";
             app.contact.ContactModify(1,newPerson);
             app.Auth.LogOut();
         }
