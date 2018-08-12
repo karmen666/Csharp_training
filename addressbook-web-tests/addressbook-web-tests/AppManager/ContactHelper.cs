@@ -40,10 +40,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper ContactModify(int v, PersonData newPerson)
+        public ContactHelper ContactModify(int p, PersonData newPerson)
         {
             manager.Navigator.GoToHomePage();
-            InitContactModification();
+            InitContactModification(p);
             FillInTheFields(newPerson);
             SubmitContactModification();
             manager.Navigator.ReturnToHomePage();
@@ -78,9 +78,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int t)
         {
-            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+t+"]")).Click();
             return this;
         }
 
