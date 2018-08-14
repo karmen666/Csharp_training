@@ -18,7 +18,7 @@ namespace WebAddressbookTests
             group.Header = "Fikus";
             group.Footer = "Orchid";
             app.Groups.Create(group);
-            app.Auth.LogOut();
+          //  app.Auth.LogOut();
         }
 
         [Test]
@@ -27,8 +27,7 @@ namespace WebAddressbookTests
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
-            app.Groups.Create(group);
-            app.Auth.LogOut();
+          //  app.Auth.LogOut();
         }
     }
 }
