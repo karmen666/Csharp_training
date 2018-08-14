@@ -7,7 +7,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-
 namespace WebAddressbookTests
 {
     public class ContactHelper:HelperBase
@@ -56,7 +55,6 @@ namespace WebAddressbookTests
             return this;
         } 
 
-
         public ContactHelper InitializeNewContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
@@ -65,10 +63,8 @@ namespace WebAddressbookTests
 
         public ContactHelper FillInTheFields(PersonData person)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(person.Firstname);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(person.Lastname);
+            Type(By.Name("firstname"), person.Firstname);
+            Type(By.Name("lastname"), person.Lastname);
             return this;
         }
 
