@@ -30,6 +30,10 @@ namespace WebAddressbookTests
 
         public void ReturnToHomePage()
         {
+            if (driver.Url == baseURL + "/addressbook/" && IsElementPresent(By.Name("add")))
+            {
+                return;
+            }
             driver.FindElement(By.LinkText("home")).Click();
         }
 

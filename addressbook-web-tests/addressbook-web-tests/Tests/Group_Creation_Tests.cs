@@ -14,11 +14,10 @@ namespace WebAddressbookTests
         [Test]
         public void GroupCreationTest()
         {
-            GroupData group = new GroupData("Kaktus");
-            group.Header = "Fikus";
-            group.Footer = "Orchid";
+            GroupData group = new GroupData("Limon");
+            group.Header = "Sour";
+            group.Footer = "Yellow";
             app.Groups.Create(group);
-          //  app.Auth.LogOut();
         }
 
         [Test]
@@ -27,7 +26,6 @@ namespace WebAddressbookTests
             GroupData group = new GroupData("");
             group.Header = "";
             group.Footer = "";
-          //  app.Auth.LogOut();
         }
     }
 }

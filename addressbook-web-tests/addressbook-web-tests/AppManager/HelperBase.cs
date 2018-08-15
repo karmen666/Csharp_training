@@ -27,7 +27,7 @@ namespace WebAddressbookTests
         {
             try
             {
-                driver.FindElement(by);
+                IWebElement t = driver.FindElement(by);
                 return true;
             }
             catch (NoSuchElementException)

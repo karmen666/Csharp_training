@@ -18,7 +18,9 @@ namespace WebAddressbookTests
         {
             PersonData newPerson = new PersonData("TU");
             newPerson.Lastname = null;
-            app.contact.ContactModify(5,newPerson);
+
+            app.contact.ContactModify(1,newPerson);
+
             app.Auth.LogOut();
         }
 

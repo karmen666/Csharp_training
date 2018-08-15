@@ -34,7 +34,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToHomePage();
             SelectContact(l);
-            RemoveContact(l);
+            RemoveContact();
             DriverAlert();
             return this;
         }
@@ -86,7 +86,7 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper RemoveContact(int number)
+        public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;

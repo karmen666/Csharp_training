@@ -15,6 +15,7 @@ namespace WebAddressbookTests
         
         public void GroupModificationTest()
         {
+            app.Groups.CreateIfNoGroupPresent();
             GroupData newData = new GroupData("Coconut");
             newData.Header = null;
             newData.Footer = null;

@@ -97,5 +97,20 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("update")).Click();
             return this;
         }
-    }
+
+        public bool IsGroupPresent()
+        {
+          return IsElementPresent(By.Name("selected[]"));
+        }
+
+        public void CreateIfNoGroupPresent()
+        {
+            manager.Navigator.GoToGroupsPage();
+
+            if (!IsGroupPresent())
+            {
+               Create(new GroupData("Orange"));
+            }
+        }
+   }
 }
