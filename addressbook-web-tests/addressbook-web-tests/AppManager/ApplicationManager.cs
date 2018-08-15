@@ -35,7 +35,6 @@ namespace WebAddressbookTests
             navigator = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
-
         }
 
         ~ApplicationManager()
@@ -54,7 +53,11 @@ namespace WebAddressbookTests
         {
             if (! app.IsValueCreated)
             {
-                app.Value = new ApplicationManager();
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.GoToHomePage();
+                app.Value = newInstance;
+
+
             }
             return app.Value;
         }
@@ -71,9 +74,7 @@ namespace WebAddressbookTests
             }
         }
 
-       
-        
-            public LogIn_LogOut_Helper Auth
+        public LogIn_LogOut_Helper Auth
         {
             get
             {
