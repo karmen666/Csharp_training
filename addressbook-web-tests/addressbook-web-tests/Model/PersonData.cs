@@ -16,12 +16,12 @@ namespace WebAddressbookTests
             this.firstname = firstname;
         }
 
-
         public PersonData(string firstname, string lastname)
         {
             this.firstname = firstname;
             this.lastname = lastname;
         }
+
         public string Firstname {
             get {
                 return firstname; 
@@ -30,6 +30,7 @@ namespace WebAddressbookTests
                 firstname = value;
             }
          }
+
         public string Lastname {
             get {
                 return lastname;

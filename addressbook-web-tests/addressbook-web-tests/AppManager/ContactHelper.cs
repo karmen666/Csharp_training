@@ -11,7 +11,6 @@ namespace WebAddressbookTests
 {
     public class ContactHelper:HelperBase
     {
- 
         public ContactHelper(ApplicationManager manager):base (manager)
         {
         }
@@ -90,6 +89,21 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             return this;
+        }
+
+        public bool IsContactPresent()
+        {
+            return IsElementPresent(By.CssSelector("img[alt=\"Edit\"]"));
+        }
+
+        public void CreateIfNoContactPresent()
+        {
+            manager.Navigator.GoToHomePage();
+
+            if (!IsContactPresent())
+            {
+                CreateContact(new PersonData("Honey"));
+            }
         }
     }
 }

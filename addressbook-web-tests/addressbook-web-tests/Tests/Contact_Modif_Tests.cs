@@ -16,13 +16,11 @@ namespace WebAddressbookTests
 
         public void ContactModifTest()
         {
-            PersonData newPerson = new PersonData("TU");
+            app.contact.CreateIfNoContactPresent();
+            PersonData newPerson = new PersonData("LadyBug");
             newPerson.Lastname = null;
-
             app.contact.ContactModify(1,newPerson);
-
             app.Auth.LogOut();
         }
-
     }
 }

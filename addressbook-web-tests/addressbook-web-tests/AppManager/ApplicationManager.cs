@@ -56,8 +56,6 @@ namespace WebAddressbookTests
                 ApplicationManager newInstance = new ApplicationManager();
                 newInstance.Navigator.GoToHomePage();
                 app.Value = newInstance;
-
-
             }
             return app.Value;
         }

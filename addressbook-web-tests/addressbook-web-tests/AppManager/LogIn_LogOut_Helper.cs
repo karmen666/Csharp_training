@@ -11,10 +11,8 @@ namespace WebAddressbookTests
 {
     public class LogIn_LogOut_Helper:HelperBase
     {
-       
         public LogIn_LogOut_Helper(ApplicationManager manager): base(manager)
         {
-
         }
 
         public void Login(AccountData account)
@@ -37,7 +35,6 @@ namespace WebAddressbookTests
             if (IsLoggedIn())
             {
                 driver.FindElement(By.LinkText("Logout")).Click();
-
             }
         }
         public bool IsLoggedIn()

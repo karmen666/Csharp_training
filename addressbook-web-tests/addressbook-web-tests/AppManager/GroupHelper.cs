@@ -11,7 +11,6 @@ namespace WebAddressbookTests
 {
    public class GroupHelper:HelperBase
     {
-        
         public GroupHelper(ApplicationManager manager):base(manager)
         {
         }
@@ -19,7 +18,6 @@ namespace WebAddressbookTests
         public GroupHelper Create(GroupData group)
         {
             manager.Navigator.GoToGroupsPage();
-            
             InitializeGroupCreation();
             FillInGroupForm(group);
             SubmitGroupCreation();
@@ -41,7 +39,6 @@ namespace WebAddressbookTests
         public GroupHelper Remove(int v)
         {
             manager.Navigator.GoToGroupsPage();
-
             SelectGroup(v);
             RemoveGroup(v);
             ReturnToGroupsPage();

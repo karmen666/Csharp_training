@@ -12,7 +12,6 @@ namespace WebAddressbookTests
         private string header = "";
         private string footer = "";
 
-
         public GroupData(string name) {
             this.name = name;
         }
