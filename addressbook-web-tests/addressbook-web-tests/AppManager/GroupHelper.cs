@@ -109,5 +109,21 @@ namespace WebAddressbookTests
                Create(new GroupData("Orange"));
             }
         }
-   }
+
+        public  List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData> ();
+            manager.Navigator.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            {
+                groups.Add(new GroupData(element.Text));
+                // the line above can be written differently:
+                //GroupData group = new GroupData(element.Text);
+                //groups.Add(group);
+            }
+
+            return groups;
+        }
+    }
 }
