@@ -24,8 +24,9 @@ namespace WebAddressbookTests
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
             oldGroups.RemoveAt(0);
-            app.Auth.LogOut();
             Assert.AreEqual(oldGroups, newGroups);
-        }      
-     }
+            app.Auth.LogOut();
+
+        }
+    }
 }

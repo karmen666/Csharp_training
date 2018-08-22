@@ -105,5 +105,30 @@ namespace WebAddressbookTests
                 CreateContact(new PersonData("Honey"));
             }
         }
+
+        public List<PersonData> GetUserList()
+        {
+            List<PersonData> person = new List<PersonData>();
+            manager.Navigator.GoToHomePage();
+
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+
+            int row = 0;
+
+            foreach (IWebElement element in elements)
+            {
+                if (row > 0)
+                {
+                    string F = element.FindElement(By.XPath("td[3]")).Text;
+                    string L = element.FindElement(By.XPath("td[2]")).Text;
+
+                    person.Add(new PersonData(F, L));
+                }
+
+                row++;
+            }
+
+            return person;
+        }
     }
 }
