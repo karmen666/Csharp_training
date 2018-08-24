@@ -111,10 +111,35 @@ namespace WebAddressbookTests
             List<PersonData> person = new List<PersonData>();
             manager.Navigator.GoToHomePage();
 
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr"));
+            ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
 
             int row = 0;
+            foreach (IWebElement element in elements)
+            {
+                if (row > 0)
+                {
+                    ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
 
+                    string F = null;
+                    string L = null;
+
+                    int index = 0;
+                    foreach (IWebElement cell in cells)
+                    {
+                        if (index == 1)
+                            L = cell.Text;
+                        if (index == 2)
+                            F = cell.Text;
+                        index++;
+                    }
+
+                    person.Add(new PersonData(F, L));
+                }
+
+                row++;
+            }
+/*
+            int row = 0;
             foreach (IWebElement element in elements)
             {
                 if (row > 0)
@@ -127,7 +152,7 @@ namespace WebAddressbookTests
 
                 row++;
             }
-
+*/
             return person;
         }
     }
