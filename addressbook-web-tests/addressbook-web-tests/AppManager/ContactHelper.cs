@@ -9,17 +9,17 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class ContactHelper:HelperBase
+    public class ContactHelper : HelperBase
     {
-        public ContactHelper(ApplicationManager manager):base (manager)
+        public ContactHelper(ApplicationManager manager) : base(manager)
         {
         }
 
         public ContactHelper CreateContact(PersonData person)
         {
-           InitializeNewContactCreation();
-           FillInTheFields(person);
-           SubmitContactCreation();
+            InitializeNewContactCreation();
+            FillInTheFields(person);
+            SubmitContactCreation();
             return this;
         }
 
@@ -52,7 +52,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + v + "]")).Click();
             return this;
-        } 
+        }
 
         public ContactHelper InitializeNewContactCreation()
         {
@@ -70,24 +70,27 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
 
         public ContactHelper InitContactModification(int t)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+t+"]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + t + "]")).Click();
             return this;
         }
 
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.XPath("(//input[@name='update'])[2]")).Click();
+            contactCache = null;
             return this;
         }
 
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -106,54 +109,60 @@ namespace WebAddressbookTests
             }
         }
 
+        private List<PersonData> contactCache = null;
+
         public List<PersonData> GetUserList()
         {
-            List<PersonData> person = new List<PersonData>();
-            manager.Navigator.GoToHomePage();
-
-            ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
-
-            int row = 0;
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                if (row > 0)
+                contactCache = new List<PersonData>();
+                List<PersonData> person = new List<PersonData>();
+                manager.Navigator.GoToHomePage();
+
+                ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
+
+                int row = 0;
+                foreach (IWebElement element in elements)
                 {
-                    ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
-
-                    string F = null;
-                    string L = null;
-
-                    int index = 0;
-                    foreach (IWebElement cell in cells)
+                    if (row > 0)
                     {
-                        if (index == 1)
-                            L = cell.Text;
-                        if (index == 2)
-                            F = cell.Text;
-                        index++;
+                        ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
+
+                        string F = null;
+                        string L = null;
+
+                        int index = 0;
+                        foreach (IWebElement cell in cells)
+                        {
+                            if (index == 1) L = cell.Text;
+                            if (index == 2) F = cell.Text;
+                            index++;
+                        }
+
+                        contactCache.Add(new PersonData(F, L));
                     }
 
-                    person.Add(new PersonData(F, L));
+                    row++;
                 }
-
-                row++;
             }
-/*
-            int row = 0;
-            foreach (IWebElement element in elements)
-            {
-                if (row > 0)
-                {
-                    string F = element.FindElement(By.XPath("td[3]")).Text;
-                    string L = element.FindElement(By.XPath("td[2]")).Text;
 
-                    person.Add(new PersonData(F, L));
-                }
-
-                row++;
-            }
-*/
-            return person;
+            return new List<PersonData>(contactCache);
         }
     }
 }
+/*
+                int row = 0;
+                foreach (IWebElement element in elements)
+                {
+                    if (row > 0)
+                    {
+                        string F = element.FindElement(By.XPath("td[3]")).Text;
+                        string L = element.FindElement(By.XPath("td[2]")).Text;
+
+                        person.Add(new PersonData(F, L));
+                    }
+
+                    row++;
+                }
+    */
+
