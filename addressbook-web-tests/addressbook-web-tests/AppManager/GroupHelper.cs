@@ -132,7 +132,6 @@ namespace WebAddressbookTests
                 //GroupData group = new GroupData(element.Text);
                 //groups.Add(group);
             }
-
             return new List<GroupData> (groupCache);
         }
     }
