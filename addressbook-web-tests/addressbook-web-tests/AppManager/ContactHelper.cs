@@ -119,30 +119,16 @@ namespace WebAddressbookTests
                 List<PersonData> person = new List<PersonData>();
                 manager.Navigator.GoToHomePage();
 
-                ICollection<IWebElement> elements = driver.FindElements(By.TagName("tr"));
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
 
-                int row = 0;
                 foreach (IWebElement element in elements)
                 {
-                    if (row > 0)
-                    {
-                        ICollection<IWebElement> cells = element.FindElements(By.TagName("td"));
+                    IList<IWebElement> cells = element.FindElements(By.TagName("td"));
 
-                        string F = null;
-                        string L = null;
+                    string F = cells[2].Text;
+                    string L = cells[1].Text;
 
-                        int index = 0;
-                        foreach (IWebElement cell in cells)
-                        {
-                            if (index == 1) L = cell.Text;
-                            if (index == 2) F = cell.Text;
-                            index++;
-                        }
-
-                        contactCache.Add(new PersonData(F, L));
-                    }
-
-                    row++;
+                    contactCache.Add(new PersonData(F, L));
                 }
             }
 
