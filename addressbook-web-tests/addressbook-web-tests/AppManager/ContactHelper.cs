@@ -76,12 +76,18 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int t)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (t+1)+"]")).Click();
-   /*        The code of the line above without XPath:
-             driver.FindElements(By.Name("entry"))[t]
-                  .FindElements(By.TagName("td"))[7]
-                  .FindElement(By.TagName("a")).Click(); */
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (t + 1) + "]")).Click();
+            /*        The code of the line above without XPath:
+                      driver.FindElements(By.Name("entry"))[t]
+                           .FindElements(By.TagName("td"))[7]
+                           .FindElement(By.TagName("a")).Click(); */
 
+            return this;
+        }
+
+        public ContactHelper InitContactProps(int k)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Details'])[" + (k+1)+"]")).Click();
             return this;
         }
 
@@ -179,6 +185,18 @@ namespace WebAddressbookTests
                 MobilePhone = mobilePhone,
                 WorkPhone = workPhone,
                 Email = eMail
+            };
+        }
+
+        public PersonData GetContactInformationFromProperties(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactProps(index);
+            string m = driver.FindElement(By.Id("content")).Text;
+
+            return new PersonData("", "")
+            {
+                AllInformation = m
             };
         }
     }

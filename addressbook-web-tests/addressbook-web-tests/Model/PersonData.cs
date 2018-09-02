@@ -10,6 +10,7 @@ namespace WebAddressbookTests
     public class PersonData : IEquatable<PersonData>, IComparable<PersonData>
     {
         private string allPhones;
+        private string allInformation;
 
         public PersonData(string firstname) {
 
@@ -86,6 +87,49 @@ namespace WebAddressbookTests
             set
             {
                 allPhones = value;
+            }
+
+        }
+
+        public string AllInformation
+        {
+            get
+            {
+                if (allInformation != null)
+                {
+                    return allInformation;
+                }
+                else
+                {
+                    string result = (Firstname + " " + Lastname).Trim();
+                    if (Address != null && Address != "")
+                    {
+                        result = result + "\r\n" + Address + "\r\n\r\n";
+                    }
+                    if (HomePhone != null && HomePhone !="")
+                    {
+                        result = result + "H: " + CleanUp(HomePhone);
+                    }
+                    if (MobilePhone != null && MobilePhone!="")
+                    {
+                        result = result + "M: " + CleanUp(MobilePhone);
+                    }
+                    if (WorkPhone != null && WorkPhone!="")
+                    {
+                        result = result + "W: " + CleanUp(WorkPhone);
+                    }
+                    if (Email != null && Email !="")
+                    {
+                        result=result+ "\r\n" + Email;
+                    }
+
+                    return result;
+                }
+            }
+
+            set
+            {
+                allInformation = value;
             }
 
         }
