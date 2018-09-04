@@ -126,27 +126,41 @@ namespace WebAddressbookTests
                 else
                 {
                     string result = (Firstname + " " + Lastname).Trim();
+                    string halfresult = "";
+
                     if (Address != null && Address != "")
                     {
-                        result = result + "\r\n" + Address + "\r\n\r\n";
+                        halfresult = halfresult + Address + "\r\n\r\n";
                     }
                     if (HomePhone != null && HomePhone !="")
                     {
-                        result = result + "H: " + CleanUp(HomePhone);
+                        halfresult = halfresult + "H: " + CleanUp(HomePhone);
                     }
                     if (MobilePhone != null && MobilePhone!="")
                     {
-                        result = result + "M: " + CleanUp(MobilePhone);
+                        halfresult = halfresult + "M: " + CleanUp(MobilePhone);
                     }
                     if (WorkPhone != null && WorkPhone!="")
                     {
-                        result = result + "W: " + CleanUp(WorkPhone);
+                        halfresult = halfresult + "W: " + CleanUp(WorkPhone);
                     }
                     if (Email != null && Email !="")
                     {
-                        result=result+ "\r\n" + Email;
+                        halfresult= halfresult+ "\r\n" + Email;
+                    }
+                    if (Email2 != null && Email2 != "")
+                    {
+                        halfresult = halfresult + "\r\n" + Email2;
+                    }
+                    if (Email3 != null && Email3 != "")
+                    {
+                        halfresult = halfresult + "\r\n" + Email3;
                     }
 
+                    if (halfresult != "")
+                    {
+                        result = result + "\r\n" + halfresult;
+                    }
                     return result;
                 }
             }

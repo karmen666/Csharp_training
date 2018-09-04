@@ -31,6 +31,8 @@ namespace WebAddressbookTests
             PersonData fromForm = app.contact.GetContactInformationFromEditForm(0);
 
             //verification:
+            System.Console.WriteLine(fromProps.AllInformation);
+            System.Console.WriteLine(fromForm.AllInformation);
             Assert.AreEqual(fromProps.AllInformation, fromForm.AllInformation);
         }
 
