@@ -66,6 +66,7 @@ namespace WebAddressbookTests
         public ContactHelper SelectContact(string id)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='"+id+"'])")).Click();
+            //driver.FindElement(By.Id(id)).Click();
             return this;
         }
 
@@ -178,7 +179,6 @@ namespace WebAddressbookTests
                 AllEmails = allEmails,
                 AllPhones = allPhones
             };
-
         }
 
         public PersonData GetContactInformationFromEditForm(int index)
@@ -218,21 +218,58 @@ namespace WebAddressbookTests
                 AllInformation = m
             };
         }
+
+        public void AddContact2Group(PersonData person, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectContact(person.Id);
+            SelectGroup2Add(group.Name);
+            CommitAddingContact2Group();
+            WaitUntilPageReloads();
+        }
+
+        public void CommitAddingContact2Group()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        public void SelectGroup2Add(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+            
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+
+        }
+
+        public void RemoveContactFromGroup(PersonData person, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupInFilter(group.Name);
+            SelectContactToRemove(person.Id);
+            CommitContactRemovalFromGroup();
+            WaitUntilPageReloads();
+
+        }
+
+        private void CommitContactRemovalFromGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
+        }
+
+        private void SelectContactToRemove(string id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+        }
+
+        private void SelectGroupInFilter(string id)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(id);
+        }
     }
 }
-/*
-                int row = 0;
-                foreach (IWebElement element in elements)
-                {
-                    if (row > 0)
-                    {
-                        string F = element.FindElement(By.XPath("td[3]")).Text;
-                        string L = element.FindElement(By.XPath("td[2]")).Text;
-
-                        person.Add(new PersonData(F, L));
-                    }
-
-                    row++;
-                }
-    */
 
