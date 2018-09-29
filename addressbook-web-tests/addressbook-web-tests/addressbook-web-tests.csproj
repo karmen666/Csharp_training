@@ -6,7 +6,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E678462D-4AF4-4E58-9823-D0F9C03A69BF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>addressbook_web_tests</RootNamespace>
     <AssemblyName>addressbook-web-tests</AssemblyName>
@@ -87,10 +87,13 @@
     <Compile Include="AppManager\ContactHelper.cs" />
     <Compile Include="AppManager\GroupHelper.cs" />
     <Compile Include="Model\AddressBookDB.cs" />
+    <Compile Include="Model\GroupContactRelation.cs" />
     <Compile Include="Tests\AuthTestBase.cs" />
     <Compile Include="Tests\ContactInformationTests.cs" />
+    <Compile Include="Tests\ContactTestBase.cs" />
     <Compile Include="Tests\Contact_Modif_Tests.cs" />
     <Compile Include="Tests\Contact_Removal_Tests.cs" />
+    <Compile Include="Tests\GroupTestBase.cs" />
     <Compile Include="Tests\Group_Modification_Tests.cs" />
     <Compile Include="Tests\Group_Removal_Tests.cs" />
     <Compile Include="Model\GroupData.cs" />

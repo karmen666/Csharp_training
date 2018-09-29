@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Linq;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
@@ -13,7 +14,7 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class ContactCreationTests:AuthTestBase
+    public class ContactCreationTests : ContactTestBase
     {
         public static IEnumerable<PersonData> RandomContactDataProvider()
         {
@@ -45,17 +46,30 @@ namespace WebAddressbookTests
 
         public void ContactCreationTest(PersonData person)
         {
-            List<PersonData> oldUsers = app.contact.GetUserList();
+            List<PersonData> oldUsers = PersonData.GetAll();
 
             app.contact.CreateContact(person);
 
-            List<PersonData> newUsers = app.contact.GetUserList();
+            List<PersonData> newUsers = PersonData.GetAll();
             oldUsers.Add(person);
             oldUsers.Sort();
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
-
             app.Navigator.ReturnToHomePage();
         }
-    }
+
+        [Test]
+        public void TestDBConnectivity3()
+        {
+            DateTime start = DateTime.Now;
+            List<PersonData> fromUI=app.contact.GetUserList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<PersonData> fromdb = PersonData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+        }
+     }
 }

@@ -10,7 +10,7 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class ContactModifTests: AuthTestBase
+    public class ContactModifTests : ContactTestBase
     {
         [Test]
 
@@ -22,7 +22,7 @@ namespace WebAddressbookTests
 
             List<PersonData> oldUsers = app.contact.GetUserList();
 
-            app.contact.ContactModify(1,newPerson);
+            app.contact.ContactModify(0, newPerson);
 
             List<PersonData> newUsers = app.contact.GetUserList();
             oldUsers[0].Firstname = newPerson.Firstname;

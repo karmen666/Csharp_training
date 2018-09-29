@@ -10,6 +10,7 @@ namespace WebAddressbookTests
 {
    public class TestBase
     {
+        public static bool PERFORM_LONG_UI_CHECKS = true;
         protected ApplicationManager app;
 
         [SetUp]
@@ -25,11 +26,14 @@ namespace WebAddressbookTests
         {
             int l = Convert.ToInt32(rnd.NextDouble() * max);
             StringBuilder builder = new StringBuilder();
+            string chars = "1234567890abcdefghijklmnopqrstuvwxyz1234567890_ABCDEFGHIJKLMNOPQRSTUVWXYZ-&";
             for (int i = 0; i < l; i++)
             {
-                builder.Append(Convert.ToChar(32 + Convert.ToInt32(rnd.NextDouble() * 65)));
+                int num = rnd.Next(0, chars.Length - 1);
+                builder.Append(chars[num]);
             }
             return builder.ToString();
         }
+
     }
 }

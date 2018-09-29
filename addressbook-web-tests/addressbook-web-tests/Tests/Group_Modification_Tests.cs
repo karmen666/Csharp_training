@@ -9,32 +9,28 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class GroupModificationTests:AuthTestBase
+    public class GroupModificationTests:GroupTestBase
     {
         [Test]
         
         public void GroupModificationTest()
         {
-
             app.Groups.CreateIfNoGroupPresent();
 
             GroupData newData = new GroupData("Almonds");
             newData.Header = null;
             newData.Footer = null;
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
-            app.Groups.Modify(0, newData);
+            GroupData toBeModified = oldGroups[0];
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            app.Groups.Modify(toBeModified.Id, newData);
+
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups[0].Name = newData.Name;
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-
-            app.Auth.LogOut();
         }
     }
-
-
-    
 }

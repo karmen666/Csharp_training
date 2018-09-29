@@ -10,7 +10,7 @@ namespace WebAddressbookTests
 {
     [TestFixture]
 
-    public class Contact_Removal_Tests: AuthTestBase
+    public class Contact_Removal_Tests: ContactTestBase
     {
         [Test]
 
@@ -18,16 +18,22 @@ namespace WebAddressbookTests
         {
             app.contact.CreateIfNoContactPresent();
 
-            List<PersonData> oldUsers = app.contact.GetUserList();
+            List<PersonData> oldUsers = PersonData.GetAll();
+            PersonData toBeRemoved = oldUsers[0];
 
-            app.contact.ContactDeletion(1);
+            app.contact.ContactDeletion(toBeRemoved);
             app.Navigator.ReturnToHomePage();
 
-            List<PersonData> newUsers = app.contact.GetUserList();
+            List<PersonData> newUsers = PersonData.GetAll();
             oldUsers.RemoveAt(0);
             oldUsers.Sort();
             newUsers.Sort();
             Assert.AreEqual(oldUsers, newUsers);
+
+            foreach (PersonData person in newUsers)
+            {
+                Assert.AreNotEqual(person.Id, toBeRemoved.Id);
+            }
 
             app.Auth.LogOut();
         }

@@ -10,23 +10,27 @@ namespace WebAddressbookTests
     {
     [TestFixture]
 
-    public class GroupRemovalTests : AuthTestBase
+    public class GroupRemovalTests : GroupTestBase
 
     {  
         [Test]
         public void GroupRemovalTest()
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupList();
-
             app.Groups.CreateIfNoGroupPresent();
-            app.Groups.Remove(0);
 
-            List<GroupData> newGroups = app.Groups.GetGroupList();
+            List<GroupData> oldGroups = GroupData.GetAll();
+            GroupData toBeRemoved = oldGroups[0];
+
+            app.Groups.Remove(toBeRemoved);
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);
-            app.Auth.LogOut();
 
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
         }
     }
 }
